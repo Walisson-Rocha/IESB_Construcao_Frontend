@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "02-bootstrap": "file:",
     "bootstrap": "^5.3.3"
   },
   "description": ""
