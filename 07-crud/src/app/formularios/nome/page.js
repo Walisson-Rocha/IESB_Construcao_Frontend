@@ -3,6 +3,7 @@
 import Pagina from '@/components/Pagina'
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { ImEvil } from "react-icons/im";
 
 export default function FormulariosNomePage() {
 
@@ -63,7 +64,7 @@ export default function FormulariosNomePage() {
           <Form.Text>Informe o seu e-mail</Form.Text>
         </Form.Group>
 
-        <Button type='submit'>Enviar</Button>
+        <Button type='submit' className='me-2'><ImEvil /> Enviar</Button>
         <Button onClick={reset}>Limpar</Button>
 
       </Form>
