@@ -4,125 +4,119 @@ import React, { useState } from 'react';
 import { Form, Button, CardImg, Modal } from 'react-bootstrap';
 import { ImEvil2 } from "react-icons/im";
 
+export default function ImcPage() {
+    const [showModal, setShowModal] = useState(false);
+    const [nome, setNome] = useState('');
+    const [genero, setGenero] = useState('');
+    const [peso, setPeso] = useState(0);
+    const [altura, setAltura] = useState('0.0');
 
-export default function imcpage() {
+    const [imc, setImc] = useState(0);
+    const [classificacao, setClassificacao] = useState('');
 
-    const [showModal, setShowModal] = useState(false)
-    const [nome, SetNome] = useState('')
-    const [genero, SetGenero] = useState('')
-    const [peso, SetPeso] = useState(0)
-    const [altura, SetAltura] = useState('0.0')
+    function calcular(event) {
+        event.preventDefault();
 
-    const [imc, setImc] = useState(0)
-    const [classificacao, setclassificacao] = useState('')
+        const pesoNumerico = Number(peso);
+        const alturaNumerico = Number(altura);
 
-    function Calcular(event) {
-        event.preventdefalt()
+        const resultadoIMC = (pesoNumerico / (alturaNumerico * alturaNumerico)).toFixed(1);
+        console.log('Resultado IMC =>', resultadoIMC);
 
-        const pesoNumerico = Number(peso)
-        const alturaNumerico = Number(altura)
+        setImc(resultadoIMC);
 
-        const resultadoIMC = (pesoNumerico / (alturaNumerico * alturaNumerico)).toFixed(1)
-        console.log('Resultado IMC =>', resultadoIMC)
-        ServerInsertedHTMLContext(resultadoIMC)
 
-        setImc(resultadoIMC)
-
-        if (imc < 18.5) {
-            setclassificacao('Abaixo do peso')
-        } else if (imc >= 18.5 && imc < 24.9) {
-            setclassificacao('Abaixo do peso')
-        } else if (imc >= 25.9 && imc < 29.9) {
-            setclassificacao('Abaixo do peso')
-        } else if (imc >= 30 && imc < 34.9) {
-            setclassificacao('Abaixo do peso')
-        } else if (imc >= 35) {
-            setclassificacao('Abaixo do peso')
+        if (resultadoIMC < 18.5) {
+            setClassificacao('Abaixo do peso');
+        } else if (resultadoIMC >= 18.5 && resultadoIMC < 24.9) {
+            setClassificacao('Peso normal');
+        } else if (resultadoIMC >= 25 && resultadoIMC < 29.9) {
+            setClassificacao('Sobrepeso');
+        } else if (resultadoIMC >= 30 && resultadoIMC < 34.9) {
+            setClassificacao('Obesidade grau 1');
+        } else if (resultadoIMC >= 35) {
+            setClassificacao('Obesidade grau 2');
         }
 
-        console.log({ imc, classificacao })
+        console.log({ imc: resultadoIMC, classificacao });
 
-        setShowModal(true)
+        setShowModal(true);
     }
 
     return (
         <Pagina titulo="Calculadora IMC">
-
             <div>
                 <CardImg src="/image.png" />
             </div>
 
-            {/*formulario */}
-
-            <Form onSubmit={Calcular}>
+            <Form onSubmit={calcular}>
                 <Form.Group>
                     <Form.Label>Nome</Form.Label>
                     <Form.Control
-                        Type="test"
+                        type="text"
                         name="nome"
                         value={nome}
-                        onChange={e => { SetNome(e.target.value) }}
+                        onChange={e => { setNome(e.target.value); }}
                     />
                 </Form.Group>
-            </Form>
-            <Form.Group>
-                <Form.Label>Gênero</Form.Label>
-                <Form.Select
-                    nome="genero"
-                    value={genero}
-                    onChange={e => { SetGenero(e.target.value) }}
-                >
-                    <option>Selecione</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                </Form.Select>
-            </Form.Group>
 
-            <Form.Group className='mb-3'>
-                <Form.Label>Altura</Form.Label>
-                <Form.Control type="number"
-                    value={altura}
-                    onChange={e => { SetAltura(e.target.value) }}
-                    min={0.01}
-                    step={0.01}
-                />
-            </Form.Group>
-
-            <Form.Group>
+                <Form.Group>
+                    <Form.Label>Gênero</Form.Label>
+                    <Form.Select
+                        name="genero"
+                        value={genero}
+                        onChange={e => { setGenero(e.target.value); }}
+                    >
+                        <option>Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </Form.Select>
+                </Form.Group>
 
                 <Form.Group className='mb-3'>
-                    <Form.Label>Peso</Form.Label>
+                    <Form.Label>Altura (em metros)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={altura}
+                        onChange={e => { setAltura(e.target.value); }}
+                        min={0.01}
+                        step={0.01}
+                    />
+                </Form.Group>
+
+                <Form.Group className='mb-3'>
+                    <Form.Label>Peso (em kg)</Form.Label>
                     <Form.Control
                         name="peso"
                         type='number'
                         value={peso}
-                        onChange={e => { SetPeso(e.target.value) }}
+                        onChange={e => { setPeso(e.target.value); }}
                         min={0.01}
-                        step={0.01} />
-                    <Form.Text>Altura em Metro. Ex: 1,75</Form.Text>
+                        step={0.01}
+                    />
+                    <Form.Text>Altura em metros. Ex: 1,75</Form.Text>
                 </Form.Group>
-            </Form.Group>
 
-            <Form.Group className='mb-3 text-center'>
-                <Button type="Subimit" variant="success"><ImEvil2 /> Calcular</Button>
-            </Form.Group>
+                <Form.Group className='mb-3 text-center'>
+                    <Button type="submit" variant="success"><ImEvil2 /> Calcular</Button> {/* Corrigido */}
+                </Form.Group>
+            </Form>
 
-            {/* modal*/}
+            {/* Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Resultado</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <p>O seu IMC é {imc}</p>
-                    <p> Sua classificação!{classificacao}</p>
+                    <p> Sua classificação é: {classificacao}</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClink={() => setShowModal(false)} >
+                    <Button variant="secondary" onClick={() => setShowModal(false)} >
                         Fechar
                     </Button>
                 </Modal.Footer>
             </Modal>
         </Pagina>
-
-    )
+    );
 }

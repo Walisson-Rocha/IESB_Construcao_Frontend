@@ -1,0 +1,57 @@
+/* Home.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #121212; /* Background escuro */
+    color: #fff; /* Texto branco */
+    height: 100vh;
+  }
+  
+  .converter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .inputSection, .resultSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  .input {
+    width: 150px;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  .equalSign {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .result {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #1E88E5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background-color: #0D47A1;
+  }
+  
