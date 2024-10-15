@@ -6,13 +6,13 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import { ImEvil2 } from "react-icons/im";
 import { Formik } from 'formik'; // Importação do Formik
 
-const conversionRates =  {
-    USD: 0.20,   
-    EUR: 0.18,   
-    BTC: 0.000003 
+const conversionRates = {
+    USD: 0.20,
+    EUR: 0.18,
+    BTC: 0.000003
 };
 
-export default function CotacaoPage()  {
+export default function CotacaoPage() {
     const [modal, setShowModal] = useState(false);
     const [resultado, setResultado] = useState("");
     const [moeda, setMoeda] = useState("");
@@ -26,7 +26,7 @@ export default function CotacaoPage()  {
     function converter(values) {
         const { valor, moeda } = values;
         const valorConvertido = valor * valoresConversao[moeda];
-        setResultado(valorConvertido.toFixed(0));
+        setResultado(valorConvertido.toFixed(6));
         setShowModal(true);
     }
 
