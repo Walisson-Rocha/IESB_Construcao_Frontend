@@ -17,7 +17,7 @@ export default function Pagina({ titulo, children }) {
               <NavDropdown.Item href="/formularios/imc">Calculadora</NavDropdown.Item>
               <NavDropdown.Item href="/formularios/cotacao">Cotacao-dolar</NavDropdown.Item>
               <NavDropdown.Item href="/formularios/imc/imcFomic">imcFomic</NavDropdown.Item>
-              <NavDropdown.Item href="/formularios/teste">Teste</NavDropdown.Item>
+              <NavDropdown.Item href="/formularios/cotacaoo">Cotacao-for</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
