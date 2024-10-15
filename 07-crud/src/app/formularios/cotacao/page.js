@@ -7,9 +7,9 @@ import { ImEvil2 } from "react-icons/im";
 
 
 const conversionRates = {
-    USD: 0.20,   
-    EUR: 0.18,   
-    BTC: 0.000003 
+    USD: 0.20,
+    EUR: 0.18,
+    BTC: 0.000003
 };
 
 export default function CotacaoPage() {
@@ -23,8 +23,8 @@ export default function CotacaoPage() {
         const amount = parseFloat(realAmount);
 
         if (selectedCurrency && !isNaN(amount) && amount > 0) {
-            
-            const result = (amount * conversionRates[selectedCurrency]).toFixed(2);
+
+            const result = (amount * conversionRates[selectedCurrency]).toFixed(6);
             setConvertedAmount(result);
             setShowModal(true);
         } else {
@@ -69,7 +69,7 @@ export default function CotacaoPage() {
 
                     <Form.Group className='mb-7 text-center'>
                         <Button type="submit" variant="success">
-                            <ImEvil2 /> Converter 
+                            <ImEvil2 /> Converter
                         </Button>
                         <Button variant="secondary" onClick={handleClear} className="ml-2">
                             Limpar
